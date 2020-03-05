@@ -15,6 +15,11 @@ export default new Router({
       path: '/create',
       name: 'Create',
       component: () => import('@/components/Create.vue')
+    },
+    {
+      path: '/edit/:id',
+      name: 'Edit',
+      component: () => import('@/components/Create.vue')
     }
   ]
 })

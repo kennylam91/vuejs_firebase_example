@@ -1,16 +1,26 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <button>
+      <router-link to="create">Create</router-link>
+    </button>
     <table style="margin: 10px auto 0 auto" border cellpadding="10" >
       <tr>
         <th>Todo name</th>
         <th>Status</th>
+        <th>Action</th>
       </tr>
     <tr v-for="(todo) in todoList" :key="todo.id">
       <td>
         {{todo.name}}
       </td>
       <td>{{todo.status}}</td>
+      <td>
+        <button>
+          <router-link :to="{path:`edit/${todo.id}`}">Edit</router-link>
+        </button>
+        <input type="button" value="Delete">
+      </td>
     </tr>
   </table>
   </div>
@@ -33,7 +43,7 @@ export default {
       querySnapshot.forEach((todo) => {
         console.log(todo.data())
         this.todoList.push({
-          key: todo.id,
+          id: todo.id,
           name: todo.data().name,
           status: todo.data().status
         })
